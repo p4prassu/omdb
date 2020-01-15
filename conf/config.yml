@@ -1,0 +1,6 @@
+server:
+  pKey: "Ratings"
+  sKey: "Rotten Tomatoes"
+  omdbURL: "http://www.omdbapi.com/?"
+  apiKey: "92536907"
+  omdbID: "tt3896198"

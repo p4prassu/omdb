@@ -1,0 +1,66 @@
+#############################################################################
+# Docker file for omdb module.                          			        #
+#                                                           	   		    #
+# Author: Prasad Potipireddi <ppotipir@cisco.com>              		  	    #
+# Date: Jan 13th, 2020.                                               	    #
+# Since: CX Cloud Release.                                            	    #
+# Copyright (c) 2018 Cisco Systems. All rights reserved.              	    #
+# Dockerfile References: https://docs.docker.com/engine/reference/builder/  #                                                             	#
+#############################################################################
+
+
+# Start from the latest golang base image
+FROM golang:latest
+
+# Add Maintainer Info
+LABEL maintainer="Prasad Potipireddi <ppotipir@cisco.com>"
+
+# LIB_PATH is the path where project code will be copied 
+ENV LIB_PATH=/omdb
+
+# Create project folder and giving full file permissions
+RUN mkdir -p ${LIB_PATH} && chmod 777 ${LIB_PATH} 
+
+# Set the Current Working Directory inside the container
+WORKDIR /omdb
+
+# Copy go mod and sum files
+COPY ./go.mod ${LIB_PATH}
+COPY ./go.sum ${LIB_PATH}
+
+# Copy main.go 
+COPY ./main.go ${LIB_PATH}
+
+# Download all dependencies. Dependencies will be cached if the go.mod and go.sum files are not changed
+RUN go mod download
+
+# Creating various folders based on project structure except docker
+
+# Creating conf folder and grating full file permissions
+RUN mkdir -p ${LIB_PATH}/conf && chmod 777 ${LIB_PATH}/conf
+
+# Copy the config files from the local conf to container's conf folder under working directory
+COPY ./conf ${LIB_PATH}/conf
+
+# Creating bin folder and grating full file permissions 
+RUN mkdir -p ${LIB_PATH}/bin && chmod 777 ${LIB_PATH}/bin
+
+# Copy the scripts files from the local bin to container's bin folder under working directory
+COPY ./bin ${LIB_PATH}/bin 
+
+#Creating utils folder and grating full file permissions
+RUN mkdir -p ${LIB_PATH}/utils && chmod 777 ${LIB_PATH}/utils
+
+# Copy the utils go files from the local utils to container's utils folder under working directory
+COPY ./utils ${LIB_PATH}/utils
+
+# Build the Go app
+RUN go build -o ${LIB_PATH}/bin/main .
+
+# Expose port 8080 to the outside world
+EXPOSE 8080
+
+# running go main executable using omdbRun.sh
+ENTRYPOINT ["sh", "/omdb/bin/omdbRun.sh" ]
+# Command to run the executable
+CMD []
