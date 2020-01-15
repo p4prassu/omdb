@@ -1,7 +1,7 @@
 #############################################################################
 # Docker file for omdb module.                          			        #
 #                                                           	   		    #
-# Author: Prasad Potipireddi <p4prassu@gmail.com>              		  	    #
+# Author: Prasad Potipireddi                       		  	                #
 # Date: Jan 13th, 2020.                                               	    #
 # Since: CX Cloud Release.                                            	    #
 # Copyright (c) 2018 Cisco Systems. All rights reserved.              	    #
@@ -13,7 +13,7 @@
 FROM golang:latest
 
 # Add Maintainer Info
-LABEL maintainer="Prasad Potipireddi <ppotipir@cisco.com>"
+LABEL maintainer="Prasad Potipireddi"
 
 # LIB_PATH is the path where project code will be copied 
 ENV LIB_PATH=/omdb

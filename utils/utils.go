@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////
 // utils go file for omdb module.                          				//
 //                                                           	   		//
-// Author: Prasad Potipireddi <p4prassu@gmail.com>              		//
+// Author: Prasad Potipireddi                   		                //
 // Date: Jan 13th, 2020.                                               	//
 // Since: CX Cloud Release.                                            	//
 // Copyright (c) 2018 Cisco Systems. All rights reserved.              	//
