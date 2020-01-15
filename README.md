@@ -7,10 +7,6 @@ To start using omdb package, install
 * go 
 * docker
 
-Run  go get command
-
-    $ go get github.com/<>
-
 ## Build Steps
 
 This project structure as follows 
