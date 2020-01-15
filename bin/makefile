@@ -24,7 +24,7 @@ RELEASE_VERSION:=0.0.1
 
 # Docker build-related.
 DOCKER_REPO_AWS:=docker_repo/cxc/omdb
-DOCKER_IMAGE:=ppotipir_omdb
+DOCKER_IMAGE:=pprassu_omdb
 DOCKER_VERSION:=latest
 
 all: build
